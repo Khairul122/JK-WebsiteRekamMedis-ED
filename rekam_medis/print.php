@@ -37,7 +37,12 @@
                             <p>Nama Dokter  : <?php echo $data['nama_dokter']; ?></p>
                             <p>Diagnosa     : <?php echo $data['diagnosa']; ?></p>
                             <p>Poliklinik   : <?php echo $data['nama_poli']; ?></p>
+                            <p>Lama Inap    : <?php echo $data['lama_nginap']; ?></p>
+                            <p>Status       : <?php echo $data['status']; ?></p>
+                            <p>Biaya        : <?php echo $data['biaya']; ?></p>
                             <p>Obat         : <?php echo $data['nama_obat']; ?></p>
+                            <p>Harga Obat   : <?php echo $data['harga_obat']; ?></p>
+                            <p>Total Biaya  : <?php echo $data['total_biaya']; ?></p>
                         </div>
                     </div>
             <?php

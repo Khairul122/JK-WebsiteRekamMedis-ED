@@ -25,16 +25,18 @@
                         <th>Diagnosa</th>
                         <th>Poliklinik</th>
                         <th>Data Obat</th>
+                        <th>Harga Obat</th>
+                        <th>Lama Nginap</th>
+                        <th>Status</th>
+                        <th>Biaya</th>
+                        <th>Total Biaya</th>
                         <th><i class="glyphicon glyphicon-cog"></i></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     $no = 1;
-                    $query = "SELECT * FROM tb_rekammedis
-        INNER JOIN tb_pasien ON tb_rekammedis.id_pasien = tb_pasien.id_pasien
-        INNER JOIN tb_dokter ON tb_rekammedis.id_dokter = tb_dokter.id_dokter
-        INNER JOIN tb_poliklinik ON tb_rekammedis.id_poli = tb_poliklinik.id_poli";
+                    $query = "SELECT * FROM tb_rekammedis";
                     $sql_rm = mysqli_query($con, $query) or die(mysqli_error($con));
                     while ($data = mysqli_fetch_array($sql_rm)) { ?>
                         <tr>
@@ -46,13 +48,12 @@
                             <td><?= $data['diagnosa'] ?></td>
                             <td><?= $data['nama_poli'] ?></td>
                             <td><?= $data['nama_obat'] ?></td>
-                            <td>
-                                <?php
-                                $sql_obat = mysqli_query($con, "SELECT * FROM tb_rm_obat JOIN tb_obat ON tb_rm_obat.id_obat = tb_obat.id_obat WHERE id_rm = '$data[id_rm]'") or die(mysqli_error($con));
-                                while ($data_obat = mysqli_fetch_array($sql_obat)) {
-                                    echo $data_obat['nama_obat'] . "<br>";
-                                } ?>
-                            </td>
+                            <td><?= $data['harga_obat'] ?></td>
+                            <td><?= $data['lama_nginap'] ?></td>
+                            <td><?= $data['status'] ?></td>
+                            <td><?= $data['biaya'] ?></td>
+                            <td><?= $data['total_biaya'] ?></td>
+                           
                             <td>
                             <a href="edit.php?id_rm=<?= $data['id_rm'] ?>" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-edit"></i></a>
                                 <button class="print-btn" data-record-id="<?= $data['id_rm'] ?>" data-patient-id="<?= $data['id_pasien'] ?>">Print</button>

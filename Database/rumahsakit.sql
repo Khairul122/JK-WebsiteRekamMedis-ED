@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 31 Des 2023 pada 02.50
+-- Waktu pembuatan: 31 Des 2023 pada 20.06
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.10
 
@@ -36,6 +36,13 @@ CREATE TABLE `tb_dokter` (
   `keterangan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `tb_dokter`
+--
+
+INSERT INTO `tb_dokter` (`id_dokter`, `nama_dokter`, `spesialis`, `alamat`, `no_telp`, `keterangan`) VALUES
+(2, 'Fajrio Harmon', 'Gigi', 'Padang', '082165443677', 16);
+
 -- --------------------------------------------------------
 
 --
@@ -49,6 +56,13 @@ CREATE TABLE `tb_obat` (
   `jml_obat` varchar(10) DEFAULT NULL,
   `hrg_obat` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_obat`
+--
+
+INSERT INTO `tb_obat` (`id_obat`, `nama_obat`, `ket`, `jml_obat`, `hrg_obat`) VALUES
+(47, 'Paracetamol', 'Obat pusing', '90', 20000);
 
 -- --------------------------------------------------------
 
@@ -68,6 +82,14 @@ CREATE TABLE `tb_pasien` (
   `biaya` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `tb_pasien`
+--
+
+INSERT INTO `tb_pasien` (`id_pasien`, `nomor_identitas`, `nama_pasien`, `jenis_kelamin`, `alamat`, `no_telp`, `lama_nginap`, `status`, `biaya`) VALUES
+(6, '1', 'Fajrio Harmon', 'L', 'Padang', '082165443677', 1, 'BPJS', 0),
+(7, '2', 'Budi', 'L', 'asa', '082165443677', 2, 'Mandiri', 200000);
+
 -- --------------------------------------------------------
 
 --
@@ -80,6 +102,13 @@ CREATE TABLE `tb_poliklinik` (
   `gedung` varchar(50) NOT NULL,
   `jumlah_pasien` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_poliklinik`
+--
+
+INSERT INTO `tb_poliklinik` (`id_poli`, `nama_poli`, `gedung`, `jumlah_pasien`) VALUES
+(3, 'Poli umum', 'A', 13);
 
 -- --------------------------------------------------------
 
@@ -99,8 +128,20 @@ CREATE TABLE `tb_rekammedis` (
   `nama_poli` varchar(50) NOT NULL,
   `id_obat` int(11) NOT NULL,
   `nama_obat` varchar(200) NOT NULL,
-  `tgl_periksa` date NOT NULL
+  `harga_obat` int(11) NOT NULL,
+  `tgl_periksa` date NOT NULL,
+  `lama_nginap` int(11) DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  `biaya` int(11) DEFAULT NULL,
+  `total_biaya` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_rekammedis`
+--
+
+INSERT INTO `tb_rekammedis` (`id_rm`, `id_pasien`, `nama_pasien`, `keluhan`, `id_dokter`, `nama_dokter`, `diagnosa`, `id_poli`, `nama_poli`, `id_obat`, `nama_obat`, `harga_obat`, `tgl_periksa`, `lama_nginap`, `status`, `biaya`, `total_biaya`) VALUES
+(31, '6', 'Fajrio Harmon', 'asa', '2', 'Fajrio Harmon', 'asa', '3', 'Poli umum', 47, 'Paracetamol', 20000, '2024-01-01', 1, 'BPJS', 0, 20000);
 
 -- --------------------------------------------------------
 
@@ -190,31 +231,31 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT untuk tabel `tb_dokter`
 --
 ALTER TABLE `tb_dokter`
-  MODIFY `id_dokter` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_dokter` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_obat`
 --
 ALTER TABLE `tb_obat`
-  MODIFY `id_obat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_obat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_pasien`
 --
 ALTER TABLE `tb_pasien`
-  MODIFY `id_pasien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_pasien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_poliklinik`
 --
 ALTER TABLE `tb_poliklinik`
-  MODIFY `id_poli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_poli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_rekammedis`
 --
 ALTER TABLE `tb_rekammedis`
-  MODIFY `id_rm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_rm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_rm_obat`
