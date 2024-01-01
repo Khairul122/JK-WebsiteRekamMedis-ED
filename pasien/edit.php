@@ -18,7 +18,7 @@
             <div class="form-group">
                     <label for="identitas">Nomor Identitas</label>
                     <input type="hidden" name="id" value="<?=$data['id_pasien']?>">
-                    <input type="number" name="identitas" id="identitas" class="form-control" value="<?=$data['nomor_identitas']?>" required autofocus>
+                    <input type="text" name="identitas" id="identitas" class="form-control" value="<?=$data['nomor_identitas']?>" required autofocus>
                 </div>
                 <div class="form-group">
                     <label for="nama">Nama Pasien</label>
